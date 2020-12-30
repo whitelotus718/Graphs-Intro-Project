@@ -43,9 +43,27 @@ class Graph {
     return this.adjList;
   }
   
+  // for (key in adjList)
+  // this.adjList[b].forEach((el) )
+  // a = [b, c, d]  key = a
+  // b = [a, c. e]
+  // c = [a, f, g]
+  // d [a, g]
+  // e = [b]
+  // f = [g]
+  // g = [c, f]
+  // h = []
 
+    // resultArr = ['a', 'b', 'c', 'd']
   breadthFirstTraversal(startingVertex) {
-    // Code goes here ...
+    const resultArr = [startingVertex]
+    for (let key in this.adjList) {
+      this.adjList[key].forEach((el) => {
+        if (!resultArr.includes(el))
+        resultArr.push(el)
+      })
+    }
+    return resultArr;
   }
 
   depthFirstTraversalIterative(startingVertex) {
