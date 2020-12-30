@@ -53,7 +53,7 @@ class Graph {
   // f = [g]
   // g = [c, f]
   // h = []
-
+// Expected: (['a', 'd', 'g', 'f', 'c', 'b', 'e']);
     // resultArr = ['a', 'b', 'c', 'd']
   breadthFirstTraversal(startingVertex) {
     const resultArr = [startingVertex]
@@ -68,14 +68,37 @@ class Graph {
 
   depthFirstTraversalIterative(startingVertex) {
     // Code goes here ...
+  //a = [b, c, d]  key = a
+  // b = [a, c. e]
+  // c = [a, f, g]
+  // d [a, g]
+  // e = [b]
+  // f = [g]
+  // g = [c, f]
+  // h = []
+// Expected: (['a', 'd', 'g', 'f', 'c', 'b', 'e']);
+   let stack = [startingVertex]
+   let resultArr = [];
+   while (stack.length) {
+     let current = stack.pop()
+      if (!resultArr.includes(current)) {
+      let arr = this.adjList[current]
+     arr.forEach((el)=> {
+      stack.push(el);
+     }) 
+     resultArr.push(current)
+    }
   }
+    return resultArr
+}
+  
 
   depthFirstTraversalRecursive(startingVertex, visited = new Set(), vertices = []) {
     // Code goes here ...
-  }
+
   
 }
-
+}
 module.exports = {
   Graph
 };
