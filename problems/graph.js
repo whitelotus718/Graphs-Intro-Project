@@ -9,7 +9,7 @@ class Graph {
   addVertex(vertex) {
     // Code goes here ...
     if (!this.adjList[vertex]) {
-      this.adjList[vertex] = new Array();
+      this.adjList[vertex] = []; // new Array()
     }
     if (this.adjList[vertex]) return;
   }
@@ -22,10 +22,32 @@ class Graph {
     if (!this.adjList[destValue]) {
       this.addVertex(destValue)
     }
+    this.adjList[srcValue].push(destValue)
+    this.adjList[destValue].push(srcValue)
   }
+
+//  adjList = {
+  'a' : []
+  'b' : []
+  'c' : []
+  'd' : []
+  'e' : []
+  'f' : []
+}
 
   buildGraph(edges) {
     // Code goes here ...
+    edges.forEach((arr, idx) => {  // adds vertex
+      let currentVertex = arr[idx]
+      let nextVertex = arr[idx + 1]
+      if (!this.adjList[currentVertex]) {
+        this.addVertex(currentVertex)
+      }
+      if (!this.adjList[nextVertex]) {
+        this.addVertex(nextVertex)
+      }
+    })
+
   }
 
   breadthFirstTraversal(startingVertex) {
