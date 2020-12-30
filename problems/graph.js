@@ -27,28 +27,22 @@ class Graph {
   }
 
 //  adjList = {
-  'a' : []
-  'b' : []
-  'c' : []
-  'd' : []
-  'e' : []
-  'f' : []
-}
+
+
 
   buildGraph(edges) {
     // Code goes here ...
-    edges.forEach((arr, idx) => {  // adds vertex
-      let currentVertex = arr[idx]
-      let nextVertex = arr[idx + 1]
-      if (!this.adjList[currentVertex]) {
-        this.addVertex(currentVertex)
-      }
-      if (!this.adjList[nextVertex]) {
-        this.addVertex(nextVertex)
-      }
+    edges.forEach((subArray) => { 
+       // adds vertex
+       if (subArray.length===1) {
+         this.addVertex(subArray[0])
+       } else {
+         this.addEdges(subArray[0], subArray[1])
+       }
     })
-
+    return this.adjList;
   }
+  
 
   breadthFirstTraversal(startingVertex) {
     // Code goes here ...
@@ -61,7 +55,7 @@ class Graph {
   depthFirstTraversalRecursive(startingVertex, visited = new Set(), vertices = []) {
     // Code goes here ...
   }
-
+  
 }
 
 module.exports = {
