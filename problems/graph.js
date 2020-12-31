@@ -93,11 +93,27 @@ class Graph {
 }
   
 
-  depthFirstTraversalRecursive(startingVertex, visited = new Set(), vertices = []) {
-    // Code goes here ...
+// startingVertex = a
+// stack = [startingVertex]
+// 
+// visited = {a}
+// vertices = [a]
 
-  
+  depthFirstTraversalRecursive(startingVertex, visited = new Set(), vertices = []) {
+ // base case
+ if (visited.has(startingVertex)) return;
+
+ visited.add(startingVertex);
+ vertices.push(startingVertex);
+
+ adjList[startingVertex].forEach((el) => {
+   this.depthFirstTraversalRecursive(el, visited, vertices)
+ })
+
+ return vertices;
+
 }
+
 }
 module.exports = {
   Graph
